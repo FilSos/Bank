@@ -1,2 +1,2 @@
 # Bank
-School project involving bank app
+School project involving bank app.
