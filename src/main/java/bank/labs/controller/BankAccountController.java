@@ -15,10 +15,10 @@ public class BankAccountController {
     @Autowired
     BankAccount bankAccount;
 
-    @GetMapping("/new")
+    @GetMapping("/bank")
     public ModelAndView homePage(){
-        bankAccount.wpłata(500.0);
-
-        return new ModelAndView("home");
+        bankAccount.wpłata(400.0);
+        System.out.println("wiadomosc test");
+        return new ModelAndView("start");
     }
 }

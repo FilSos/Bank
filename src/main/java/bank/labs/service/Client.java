@@ -7,10 +7,14 @@ import java.time.LocalDate;
 public  class Client {
 
     private Integer id;
-
     private LocalDate dataZalozenia;
     private Double saldo;
 
+    public Client(Integer id, LocalDate dataZalozenia, Double saldo) {
+        this.id = id;
+        this.dataZalozenia = dataZalozenia;
+        this.saldo = saldo;
+    }
 
     public Integer getId() {
         return id;
