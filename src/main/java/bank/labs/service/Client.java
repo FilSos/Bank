@@ -9,11 +9,13 @@ public  class Client {
     private Integer id;
     private LocalDate dataZalozenia;
     private Double saldo;
+    private BankAccount bankAccount;
 
-    public Client(Integer id, LocalDate dataZalozenia, Double saldo) {
+    public Client(Integer id, LocalDate dataZalozenia, Double saldo, BankAccount bankAccount) {
         this.id = id;
         this.dataZalozenia = dataZalozenia;
         this.saldo = saldo;
+        this.bankAccount = bankAccount;
     }
 
     public Integer getId() {
@@ -38,5 +40,13 @@ public  class Client {
 
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 }

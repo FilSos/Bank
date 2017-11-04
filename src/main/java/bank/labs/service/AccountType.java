@@ -1,5 +1,5 @@
 package bank.labs.service;
 
 public enum AccountType {
-     STANDARD, PREMIUM, VIP;
+     LOKATA,STANDARD, PREMIUM, VIP
 }
