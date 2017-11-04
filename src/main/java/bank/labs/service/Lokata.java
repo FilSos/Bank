@@ -3,7 +3,7 @@ package bank.labs.service;
 public class Lokata {
 
     public Double lokata(Double amount, Client client){
-        if(client.getBankAccount().equals("LOKATA")){
+        if(client.getAccountType().equals("LOKATA")){
             if(amount != null && amount > 0){
                 Double saldo = client.getSaldo();
                 saldo+=amount;
