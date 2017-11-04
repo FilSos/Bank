@@ -1,21 +1,16 @@
 package bank.labs.service;
-import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-@Component
-public class Klient {
+
+
+
+public  class Client {
 
     private Integer id;
 
     private LocalDate dataZalozenia;
     private Double saldo;
 
-    public Klient(Integer id, LocalDate dataZalozenia, Double saldo) {
-        this.id = id;
-        this.dataZalozenia = dataZalozenia;
-        this.saldo = saldo;
-    }
 
     public Integer getId() {
         return id;
