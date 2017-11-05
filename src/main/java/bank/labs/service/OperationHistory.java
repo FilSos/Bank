@@ -1,12 +1,24 @@
 package bank.labs.service;
 
-import java.time.LocalDate;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
+@Component
 public class OperationHistory {
 
-    private OperationType operationType;
-    private LocalDate operationDate;
-    private String description;
+    ArrayList<History> HistoriaKlienta;
 
 
+    public ArrayList<History> getHistory(Client client) {
+        for (History Lista : HistoriaKlienta) {
+            System.out.println(Lista.getOperationDate());
+        }
+        return HistoriaKlienta;
+    }
+
+    public ArrayList<History> addHistory(Client client) {
+        HistoriaKlienta.add(client.getHistory());
+        return HistoriaKlienta;
+    }
 }

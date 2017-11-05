@@ -10,12 +10,15 @@ public  class Client {
     private LocalDate dataZalozenia;
     private Double saldo;
     private AccountType accountType;
+    private History history;
+    private OperationHistory operationHistory;
 
     public Client(Integer id, LocalDate dataZalozenia, Double saldo, AccountType accountType) {
         this.id = id;
         this.dataZalozenia = dataZalozenia;
         this.saldo = saldo;
         this.accountType = accountType;
+        this.operationHistory = new OperationHistory();
     }
 
     public Integer getId() {
@@ -49,4 +52,21 @@ public  class Client {
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
+
+    public OperationHistory getOperationHistory() {
+        return operationHistory;
+    }
+
+    public void setOperationHistory(OperationHistory operationHistory) {
+        this.operationHistory = operationHistory;
+    }
+
 }
