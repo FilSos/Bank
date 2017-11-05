@@ -2,11 +2,13 @@ package bank.labs.config;
 
 import bank.labs.service.*;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 
 @Configuration
+@ComponentScan
 public class BankAccountConfig {
     @Bean
     public BankAccount bankAccount() {
@@ -24,4 +26,9 @@ public class BankAccountConfig {
     public History history(){
         return new History(OperationType.WPLATA,LocalDate.now(),"To jest opis wplaty");
     }
+   /* @Bean
+    public OperationHistory operationHistory(){
+        operationHistory().addHistory(client());
+        return new OperationHistory();
+    }*/
 }
