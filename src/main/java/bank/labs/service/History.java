@@ -7,7 +7,7 @@ public class History {
     private OperationType operationType;
     private LocalDate operationDate;
     private String description;
-
+    private BankAccount accountId;
 
     public History(OperationType operationType, LocalDate operationDate, String description) {
         this.operationType = operationType;
@@ -40,4 +40,7 @@ public class History {
         this.description = description;
     }
 
+    public BankAccount getAccountId() {
+        return accountId;
+    }
 }
