@@ -1,5 +1,7 @@
 package bank.labs.service;
 
+import bank.labs.model.Client;
+import bank.labs.model.History;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -7,10 +9,10 @@ import java.util.ArrayList;
 @Component
 public class OperationHistory {
 
-    ArrayList<History> HistoriaKlienta = new ArrayList<>();
+    private ArrayList<History> clientHistory = new ArrayList<>();
 
     public ArrayList<History> addHistory(Client client) {
-        HistoriaKlienta.add(client.getHistory());
-        return HistoriaKlienta;
+        clientHistory.add(client.getHistory());
+        return clientHistory;
     }
 }

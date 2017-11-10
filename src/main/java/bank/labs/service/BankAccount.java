@@ -1,20 +1,34 @@
 package bank.labs.service;
 
 
+import bank.labs.model.Client;
+import bank.labs.model.History;
+import bank.labs.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-//@Component
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+
+@Component
 public class BankAccount {
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
-    private Integer accountId;
+    private long accountId;
+    @ManyToOne
     private Client client;
 
-    @Autowired
-    History history;
+    HistoryService historyService;
 
-    public BankAccount(Client client) {
-        this.client = client;
+    ClientService clientService;
+
+    @Autowired
+    public BankAccount(HistoryService historyService, ClientService clientService) {
+        this.historyService = historyService;
+        this.clientService = clientService;
     }
+
 
     public Double wpłata(Double amount) {
         Double saldo = client.getSaldo();

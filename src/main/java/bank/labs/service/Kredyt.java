@@ -1,5 +1,7 @@
 package bank.labs.service;
 
+import bank.labs.model.Client;
+
 public class Kredyt {
 
 

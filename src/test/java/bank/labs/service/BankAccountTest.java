@@ -1,12 +1,10 @@
 package bank.labs.service;
 
+import bank.labs.model.Client;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-
-import static org.junit.Assert.*;
 
 public class BankAccountTest {
     @Test
