@@ -23,18 +23,21 @@ public class ClientService {
     }
 
 
-    public List<Client>getAllClients(){
-       return (List<Client>)clientRepository.findAll();
+    public List<Client> getAllClients() {
+        return (List<Client>) clientRepository.findAll();
 
     }
-    public  Client getClient(int id){
+
+    public Client getClient(long id) {
         return (Client) clientRepository.findById(id);
     }
 
-    public Client saveClient(Client client){
+    public Client saveClient(Client client) {
         return clientRepository.save(client);
     }
-    public List<History> clientHistory(int id){
-       return historyRepository.findByClientId(id);
+
+    public List<History> clientHistory(int id) {
+        return historyRepository.findByClientId(id);
     }
+
 }

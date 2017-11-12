@@ -1,17 +1,20 @@
 package bank.labs.service;
 
 
+import bank.labs.model.AccountType;
 import bank.labs.model.Client;
 import bank.labs.model.History;
-import bank.labs.repository.HistoryRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
-@Component
+@Getter
 public class BankAccount {
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
@@ -19,55 +22,81 @@ public class BankAccount {
     @ManyToOne
     private Client client;
 
-    HistoryService historyService;
+    private HistoryService historyService;
 
-    ClientService clientService;
+    private ClientService clientService;
+
+
+    private OperationHistory operationHistory;
 
     @Autowired
-    public BankAccount(HistoryService historyService, ClientService clientService) {
+    public BankAccount(AccountType accountType, HistoryService historyService,
+                       ClientService clientService, OperationHistory operationHistory) {
+        this.accountType = accountType;
+        this.accountId = client.getId();
         this.historyService = historyService;
         this.clientService = clientService;
+        this.operationHistory = operationHistory;
+
     }
 
+    public void setAccountId() {
+        this.accountId = client.getId();
+    }
 
-    public Double wpłata(Double amount) {
+    @Bean
+    public Boolean contribution(Double amount) {
         Double saldo = client.getSaldo();
-        if (amount != null && amount > 0)
+        if (amount != null && amount > 0) {
+
             saldo += amount;
-        client.setHistory(history);
-        client.getOperationHistory().addHistory(client);
-        System.out.println(saldo);
-        return saldo;
-
+            System.out.println(saldo);
+            History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
+                    "Dokonano operacji wpłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
+            client.setHistory(history);
+            History oneHistory = client.getHistory();
+            operationHistory.addHistory(oneHistory);
+            return true;
+        }
+        return false;
     }
 
-    public Double wypłata(Double amount) {
+    @Bean
+    public Boolean payoff(Double amount) {
         Double saldo = client.getSaldo();
-        if (amount != null && amount > 0)
+        if (amount != null && amount > 0) {
             saldo -= amount;
-        client.setHistory(history);
-        client.getOperationHistory().addHistory(client);
-
-        System.out.println(saldo);
-        return saldo;
+            History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
+                    "Dokonano operacji wypłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
+            client.setHistory(history);
+            History oneHistory = client.getHistory();
+            operationHistory.addHistory(oneHistory);
+            return true;
+        }
+        return false;
 
     }
 
-    public Double przelew(Double amount, Client odbiorca) {
+    //TODO nalezy otworzyc sesje i jesli wszystkie operacje nie wyjda, nalezy wykonac rollback
+    @Bean
+    public Boolean payment(Double amount, Client secondClient) {
         Double saldo = client.getSaldo();
-        if (amount != null && amount > 0)
+        if (amount != null && amount > 0) {
             if (saldo != null && saldo > amount) {
-                Double saldoOdbiorcy = odbiorca.getSaldo();
-                saldoOdbiorcy += amount;
-                client.setHistory(history);
-                client.getOperationHistory().addHistory(client);
+                Double secondClientSaldo = secondClient.getSaldo();
+                secondClientSaldo += amount;
                 saldo -= amount;
+                History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
+                        "Dokonano operacji przelewu dnia: " + LocalDate.now() + " na kwotę " + amount);
+                client.setHistory(history);
+                History oneHistory = client.getHistory();
+                operationHistory.addHistory(oneHistory);
 
-                System.out.println("saldo odbiorcy" + saldoOdbiorcy);
+                return true;
             }
-        System.out.println("nasze saldo: " + saldo);
+        }
 
-        return saldo;
+        return false;
 
     }
 

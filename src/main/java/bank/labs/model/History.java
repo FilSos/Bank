@@ -23,6 +23,7 @@ public class History {
     @ManyToOne
     private Client clientId;
 
+
     public History(OperationType operationType, LocalDate operationDate, String description) {
         this.operationType = operationType;
         this.operationDate = operationDate;

@@ -2,7 +2,7 @@ package bank.labs.service;
 
 import bank.labs.model.Client;
 
-public class Lokata {
+public class Deposit {
 
     public Double lokata(Double amount, Client client){
         if(client.getAccountType().equals("LOKATA")){

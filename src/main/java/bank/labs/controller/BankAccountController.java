@@ -1,5 +1,6 @@
 /*TODO Napisz oddzielne klasy z adnotacja getMapping ktore beda zwracaly pojedynczego klienta a pozniej wstrzykuj je
 TODO w klasy ktore dodaja historie itd*/
+//TODO popracuj nad bankAccount, zeby moc tworzyc jego instancje i wywolywac jego funkcje
 
 
 package bank.labs.controller;
@@ -10,8 +11,8 @@ import bank.labs.service.ClientService;
 import bank.labs.service.OperationHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -25,14 +26,16 @@ public class BankAccountController {
 
     ClientService clientService;
 
-    public BankAccountController(BankAccount bankAccount, OperationHistory history, ClientService clientService) {
+    ClientController clientController;
+    public BankAccountController(BankAccount bankAccount, OperationHistory history, ClientService clientService, ClientController clientController) {
         this.bankAccount = bankAccount;
         this.history = history;
         this.clientService = clientService;
+        this.clientController = clientController;
     }
 
-    @GetMapping("/wplata")
-    public ModelAndView wplata() {
+    @PostMapping
+    public ModelAndView wplata(@ModelAttribute Client client) {
         bankAccount.wpłata(400.0);
         System.out.println("wiadomosc test");
         return new ModelAndView("start");
@@ -45,17 +48,17 @@ public class BankAccountController {
         return new ModelAndView("start");
     }
 
-    @GetMapping("/przelew")
-    public ModelAndView przelew() {
-        bankAccount.przelew(400.0, clientService.getClient(id));
+    @PostMapping
+    public ModelAndView przelew(@ModelAttribute Client client) {
+        bankAccount.przelew(400.0, clientService.getClient(client.getId()));
         System.out.println("wiadomosc test3");
         return new ModelAndView("start");
     }
 
 
-    @GetMapping("/history")
-    public ModelAndView history() {
-        history.addHistory(clientService.getClient(id));
+    @PostMapping
+    public ModelAndView history(@ModelAttribute Client client) {
+        history.addHistory(clientService.getClient(client.getId()));
         System.out.println("wiadomosc test5");
         return new ModelAndView("start");
     }

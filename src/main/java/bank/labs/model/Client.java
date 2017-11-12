@@ -1,6 +1,5 @@
 package bank.labs.model;
 
-import bank.labs.service.AccountType;
 import bank.labs.service.OperationHistory;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,15 +27,18 @@ public  class Client {
 
     private OperationHistory operationHistory;
 
+    private long amount;
+
     public Client() {
     }
 
-    public Client(long id, LocalDate dateAccountStart, Double saldo, AccountType accountType) {
+    public Client(long id, LocalDate dateAccountStart, Double saldo, AccountType accountType, long amount, OperationHistory operationHistory) {
         this.id = id;
         this.dateAccountStart = dateAccountStart;
         this.saldo = saldo;
         this.accountType = accountType;
-        this.operationHistory = new OperationHistory();
+        this.amount = amount;
+        this.operationHistory = operationHistory;
     }
 
 }

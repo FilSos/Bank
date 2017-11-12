@@ -1,5 +1,6 @@
 package bank.labs.service;
 
+import bank.labs.model.AccountType;
 import bank.labs.model.Client;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 public class BankAccountTest {
     @Test
     public void wpłata() throws Exception {
-        Client client = new Client(1, LocalDate.now(),1000.0,AccountType.VIP);
+        Client client = new Client(1, LocalDate.now(),1000.0, AccountType.VIP);
         BankAccount bankAccount = new BankAccount(client);
         bankAccount.wpłata(400.0);
         //Poprawic

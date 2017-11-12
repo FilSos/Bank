@@ -2,10 +2,10 @@ package bank.labs.service;
 
 import bank.labs.model.Client;
 
-public class Kredyt {
+public class Credit {
 
 
-    public Double kredyt(Double amount, Client client) {
+    public Double credit (Double amount, Client client) {
         if (client.getAccountType().equals("VIP")) {
             if (amount != null && amount > 0) {
                 Double saldo = client.getSaldo();

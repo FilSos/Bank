@@ -9,10 +9,20 @@ import java.util.ArrayList;
 @Component
 public class OperationHistory {
 
-    private ArrayList<History> clientHistory = new ArrayList<>();
+    private ArrayList<History> clientHistory;
 
-    public ArrayList<History> addHistory(Client client) {
-        clientHistory.add(client.getHistory());
+    private Client client;
+
+    public OperationHistory() {
+        this.clientHistory = new ArrayList<>();
+    }
+
+    public ArrayList<History> addHistory( History history) {
+        clientHistory.add(history);
+        return clientHistory;
+    }
+
+    public ArrayList<History> getClientHistory() {
         return clientHistory;
     }
 }

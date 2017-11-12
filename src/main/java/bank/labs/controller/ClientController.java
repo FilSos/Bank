@@ -1,7 +1,7 @@
 package bank.labs.controller;
 
 import bank.labs.model.Client;
-import bank.labs.model.History;
+
 import bank.labs.repository.HistoryRepository;
 import bank.labs.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ClientController {
         this.historyRepository = historyRepository;
     }
 
-    @GetMapping("/{clientId}")
+    @GetMapping("{clientId}")
     public ModelAndView getClientHistory(@PathVariable("clientId") int clientId){
         ModelAndView modelAndView = new ModelAndView("history");
         modelAndView.addObject("clientId", clientService.clientHistory(clientId));
@@ -36,7 +36,7 @@ public class ClientController {
         return modelAndView;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ModelAndView getClient(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView("client");
         modelAndView.addObject("client", clientService.getClient(id));
