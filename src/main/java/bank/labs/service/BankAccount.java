@@ -44,6 +44,7 @@ public class BankAccount {
         this.accountId = client.getId();
     }
 
+    //TODO pozmieniaj nazwy metdoy, BankAccount do modelu dodaj, i wtedy controllery powinny dziaqlac
     @Bean
     public Boolean contribution(Double amount) {
         Double saldo = client.getSaldo();

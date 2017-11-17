@@ -20,7 +20,9 @@ public class ClientService {
     public ClientService(ClientRepository clientRepository, HistoryRepository historyRepository) {
         this.clientRepository = clientRepository;
         this.historyRepository = historyRepository;
+
     }
+
 
 
     public List<Client> getAllClients() {
@@ -29,7 +31,7 @@ public class ClientService {
     }
 
     public Client getClient(long id) {
-        return (Client) clientRepository.findById(id);
+        return  clientRepository.findById(id);
     }
 
     public Client saveClient(Client client) {

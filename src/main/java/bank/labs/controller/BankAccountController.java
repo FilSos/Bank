@@ -27,11 +27,15 @@ public class BankAccountController {
     ClientService clientService;
 
     ClientController clientController;
-    public BankAccountController(BankAccount bankAccount, OperationHistory history, ClientService clientService, ClientController clientController) {
-        this.bankAccount = bankAccount;
+    public BankAccountController( OperationHistory history, ClientService clientService, ClientController clientController) {
         this.history = history;
         this.clientService = clientService;
         this.clientController = clientController;
+    }
+
+    @Autowired(required = false)
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     @PostMapping
@@ -40,7 +44,7 @@ public class BankAccountController {
         System.out.println("wiadomosc test");
         return new ModelAndView("start");
     }
-
+//TODO popraw na posta
     @GetMapping("/wyplata")
     public ModelAndView wyplata() {
         bankAccount.wypłata(400.0);
