@@ -1,7 +1,5 @@
 package bank.labs.model;
 
-import bank.labs.service.BankAccount;
-import bank.labs.service.OperationType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -1,4 +1,4 @@
-package bank.labs.service;
+package bank.labs.model;
 
 public enum OperationType {
 

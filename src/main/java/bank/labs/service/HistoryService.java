@@ -1,22 +1,22 @@
 package bank.labs.service;
 
 import bank.labs.model.Client;
-import bank.labs.model.History;
+import bank.labs.repository.HistoryRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.OneToOne;
-import java.util.ArrayList;
 
 @Getter
 public class HistoryService {
 
-    private BankAccount bankAccount;
+    private BankAccountService bankAccountService;
 
     private OperationHistory operationHistory;
 
     private ClientService clientService;
+
+    private HistoryRepository historyRepository;
 
     @OneToOne
     private Client client;
@@ -24,8 +24,8 @@ public class HistoryService {
 
 
     @Autowired
-    public HistoryService(BankAccount bankAccount, OperationHistory operationHistory, ClientService clientService) {
-        this.bankAccount = bankAccount;
+    public HistoryService(BankAccountService bankAccountService, OperationHistory operationHistory, ClientService clientService) {
+        this.bankAccountService = bankAccountService;
         this.operationHistory = operationHistory;
         this.clientService = clientService;
     }

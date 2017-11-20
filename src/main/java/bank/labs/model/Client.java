@@ -18,27 +18,26 @@ public  class Client {
     private long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAccountStart;
-
-    private Double saldo;
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
     @OneToMany
     private History history;
-
     private OperationHistory operationHistory;
+
+    private  BankAccount bankAccount;
 
     private long amount;
 
     public Client() {
     }
 
-    public Client(long id, LocalDate dateAccountStart, Double saldo, AccountType accountType, long amount, OperationHistory operationHistory) {
+    public Client(long id, LocalDate dateAccountStart, AccountType accountType, long amount, OperationHistory operationHistory, BankAccount bankAccount) {
         this.id = id;
         this.dateAccountStart = dateAccountStart;
-        this.saldo = saldo;
         this.accountType = accountType;
         this.amount = amount;
         this.operationHistory = operationHistory;
+        this.bankAccount = bankAccount;
     }
 
 }
