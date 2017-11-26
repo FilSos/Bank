@@ -1,2 +1,2 @@
-# Bank
-School project involving bank app.
+# sda-bank
+Project for Software Development Academy
