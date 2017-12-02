@@ -1,11 +1,9 @@
 package pl.sda.poznan.bank.backend.service;
 
+import pl.sda.poznan.bank.backend.web.viewmodel.CreditVM;
 
-import org.springframework.stereotype.Service;
+public interface CreditService  {
+    Boolean getCredit(CreditVM viewModel, long id);
 
-@Service
-public class CreditService {
-
-
+   Runnable CreditInstallment(long id);
 }
-
