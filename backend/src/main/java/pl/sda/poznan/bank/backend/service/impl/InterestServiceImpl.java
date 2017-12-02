@@ -13,7 +13,11 @@ public class InterestServiceImpl implements InterestService {
 
 
     @Override
+<<<<<<< HEAD
     public Double creditInterestCounter(Credit credit) {
+=======
+    public Double credtInterestCounter(Credit credit) {
+>>>>>>> 9048659537a547e44ba87947a8e2d8de82a32749
 
         Double interestValue;
         Double bankAccountBalance = credit.getCreditBalance();

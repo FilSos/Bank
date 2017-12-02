@@ -20,7 +20,10 @@ public class Interest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Double interestInPercent;
+<<<<<<< HEAD
     @OneToOne
+=======
+>>>>>>> 9048659537a547e44ba87947a8e2d8de82a32749
     private Investment investmentBalance;
     private AccountType accountType;
 }

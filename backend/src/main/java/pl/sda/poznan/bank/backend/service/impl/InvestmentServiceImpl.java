@@ -1,5 +1,6 @@
 package pl.sda.poznan.bank.backend.service.impl;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.Investment;
@@ -47,5 +48,14 @@ public class InvestmentServiceImpl implements InvestmentService {
         oldInvestment.setEndInvestmentDate(newInvestment.getEndInvestmentDate());
         oldInvestment.setInvestmentBalance(newInvestment.getInvestmentBalance());
     }
+=======
+import org.springframework.stereotype.Service;
+import pl.sda.poznan.bank.backend.service.InvestmentService;
+
+
+@Service
+public class InvestmentServiceImpl implements InvestmentService {
+
+>>>>>>> 9048659537a547e44ba87947a8e2d8de82a32749
 
 }
