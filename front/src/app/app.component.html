@@ -1,0 +1,61 @@
+<mat-sidenav-container class="all-wrap" fullscreen>
+  <mat-sidenav #sidenav>
+    <div class="menu-header">
+
+      <img src="assets/logo-small.png" class="logo-center" alt="Responsive image">
+      <span *ngIf="loggedUser" class="login-info">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
+    </div>
+    <mat-list *ngIf="isLoggedIn">
+      <mat-list-item [routerLink]="['/my-finances']"> Moje finanse</mat-list-item>
+      <mat-list-item [routerLink]="['/new-transaction']"> Wykonaj przelew</mat-list-item>
+      <mat-list-item [routerLink]="['/transfer']"> Depozyt</mat-list-item>
+      <mat-list-item [routerLink]="['/history']"> Historia</mat-list-item>
+      <mat-list-item [routerLink]="['/settings']"> Ustawienia konta</mat-list-item>
+      <!--<mat-list-item (click)="getUserData()"> Test</mat-list-item>-->
+      <span class="spacer"></span>
+      <mat-list-item (click)="logout()"> Wyloguj</mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="!isLoggedIn">
+      <mat-list-item [routerLink]="['/login']">Zaloguj</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <div class="page-wrap">
+    <header role="banner">
+      <mat-toolbar class="pink darken-4 white-text">
+        <button
+          type="button"
+          mat-icon-button
+          (click)="sidenav.open()"
+          title="Open sidenav">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="brand ">SDA - Bank</span>
+        <span class="spacer"></span>
+        <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/register']">Zarejestruj się</button>
+        <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/login']">Zaloguj</button>
+        <button *ngIf="isLoggedIn" mat-button (click)="logout()">Wyloguj</button>
+      </mat-toolbar>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!--Footer-->
+    <footer class="pink darken-4 page-footer center-on-small-only">
+
+      <!--Copyright-->
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          © 2017 Copyright: <a href="https://www.MDBootstrap.com"> SDA | JAVAPOZ4 </a>
+
+        </div>
+      </div>
+      <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+
+  </div>
+</mat-sidenav-container>

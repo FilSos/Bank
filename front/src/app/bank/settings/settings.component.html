@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row header-act">
+    <div class="col-sm-12">
+
+      <h2 class="h3-responsive font-weight-bold">Ustawienia konta</h2>
+
+      <div class="row">
+
+        <div class="col-sm-6">
+
+
+          <mat-form-field>
+            <input matInput placeholder="Imię" value="{{userData.firstName}}" disabled>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nazwisko" value="{{userData.lastName}}" disabled>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Adres" disabled>
+          </mat-form-field>
+          <mat-form-field>
+            <input class="halfWidth" matInput placeholder="Telefon" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input class="halfWidth" matInput placeholder="Email" value="{{userData.email}}" required>
+          </mat-form-field>
+
+          <button value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Blokuj konto</button>
+
+        </div>
+
+
+        <div class="col-sm-6">
+
+
+          <mat-form-field>
+            <input matInput placeholder="Pesel" disabled>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Limit dzienny" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Limit Miesieczny" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input class="halfWidth" matInput placeholder="Zmiana hasla" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input class="halfWidth" matInput placeholder="Powtorz haslo" required>
+          </mat-form-field>
+
+          <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zapisz ustawienia
+          </button>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
