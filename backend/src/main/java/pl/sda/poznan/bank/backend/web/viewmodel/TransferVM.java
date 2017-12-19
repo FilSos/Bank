@@ -21,4 +21,12 @@ public class TransferVM {
     private String notes;
     private String address;
 
+    public TransferVM(String title, String sourceAccountNumber, String destinationAccountNumber, double amount, String notes, String address) {
+        this.title = title;
+        this.sourceAccountNumber = sourceAccountNumber;
+        this.destinationAccountNumber = destinationAccountNumber;
+        this.amount = amount;
+        this.notes = notes;
+        this.address = address;
+    }
 }

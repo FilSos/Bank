@@ -17,5 +17,9 @@ public class PaymentAndPayoffVM {
     private double amount;
     private String notes;
 
-
+    public PaymentAndPayoffVM(String sourceAccountNumber, double amount, String notes) {
+        this.sourceAccountNumber = sourceAccountNumber;
+        this.amount = amount;
+        this.notes = notes;
+    }
 }

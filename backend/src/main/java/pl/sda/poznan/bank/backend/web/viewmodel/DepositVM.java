@@ -10,4 +10,9 @@ import lombok.Setter;
 public class DepositVM {
     private String accountNumber;
     private Double amount;
+
+    public DepositVM(String accountNumber, Double amount) {
+        this.accountNumber = accountNumber;
+        this.amount = amount;
+    }
 }

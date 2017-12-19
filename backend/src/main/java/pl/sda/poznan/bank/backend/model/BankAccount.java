@@ -23,12 +23,12 @@ public class BankAccount {
 
     private double balance;
 
-    private  long accountNumber;
+    private  String accountNumber;
 
     public BankAccount() {
     }
 
-    public BankAccount(AccountType accountType, User user, long accountNumber) {
+    public BankAccount(AccountType accountType, User user, String accountNumber) {
         this.accountType = accountType;
         this.user = user;
         this.accountNumber = accountNumber;
