@@ -48,4 +48,16 @@ public class User {
     private LocalDate dateAccountStart;
 
 
+    public User(String login, String password, String firstName, String lastName, String email, Boolean activated, List<BankAccount> bankAccount, UserType userType, List<History> history, LocalDate dateAccountStart) {
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.activated = activated;
+        this.bankAccount = bankAccount;
+        this.userType = userType;
+        this.history = history;
+        this.dateAccountStart = dateAccountStart;
+    }
 }
