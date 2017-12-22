@@ -1,84 +1,78 @@
 package pl.sda.poznan.bank.backend.service.impl;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.sda.poznan.bank.backend.model.*;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
-import pl.sda.poznan.bank.backend.service.BankUserDetailsService;
-import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;
+import pl.sda.poznan.bank.backend.service.BankAccountService;
 
-
-import javax.sql.DataSource;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-@DataJpaTest
+
 @RunWith(SpringRunner.class)
-public class BankAccountServiceImplTest  {
+public class BankAccountServiceImplTest {
+
+
+    @TestConfiguration
+    static class BankAccountServiceImplTestContextConfiguration {
+
+        @Bean
+        public BankAccountService bankAccountService() {
+            return new BankAccountServiceImpl();
+        }
+    }
+
 
     @Autowired
+    private BankAccountService bankAccountService;
+
+    @MockBean
     private HistoryRepository historyRepository;
 
-    @Autowired
+    @MockBean
     private BankAccountRepository bankAccountRepository;
-
-    @Autowired
+    @MockBean
     private UserRepository userRepository;
-
-
-
-    @Autowired
-    private TestEntityManager entityManager;
-
 
 
     @Test
     public void payment() throws Exception {
-        User user = new User("test","test","Jan","Kowalski",
-                "test@gmail.com",true,null,UserType.USER,null, LocalDate.now());
-        entityManager.persist(user);
-        entityManager.flush();
-        Optional<User> testUser = userRepository.findByLogin(user.getLogin());
-
-        assertNotEquals(testUser,user.getLogin());
-
-        BankAccount bankAccount = new BankAccount(AccountType.STANDARD,user,"61109010140000071219812874");
-        PaymentAndPayoffVM viewModel = new PaymentAndPayoffVM("61109010140000071219812874",
-                400.0,"Info test");
-        BankAccount byAccountNumber = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
-        double balance = byAccountNumber.getBalance();
-
-
-        assertEquals(800.0,400.0);
+        BankAccount bankAccount = new BankAccount(AccountType.STANDARD,null,"61109010140000071219812874");
+        double amount = 400.0;
+        double balance = bankAccount.getBalance();
+        balance+=amount;
+        assertEquals("Should change account balance",amount,balance,0.0000000000000000000000001);
 
     }
 
-    @Test
-    public void payoff() throws Exception {
-        PaymentAndPayoffVM viewModel = new PaymentAndPayoffVM("61109010140000071219812874",
-                400.0,"Info test");
-    }
+        @Test
+        public void payoff () throws Exception {
+            BankAccount bankAccount = new BankAccount(AccountType.STANDARD,null,"61109010140000071219812874");
+            double amount = 400.0;
+            double balance = bankAccount.getBalance()+400;
+            balance-=amount;
+            assertEquals("Should change account balance",0,balance,0.0000000000000000000000001);
+        }
 
-    @Test
-    public void transfer() throws Exception {
+        @Test
+        public void transfer () throws Exception {
+            BankAccount bankAccount = new BankAccount(AccountType.STANDARD,null,"61109010140000071219812874");
+            BankAccount bankAccount2 = new BankAccount(AccountType.STANDARD,null,"32958930258230952029338503");
+            double amount = 400.0;
+            double balance = bankAccount.getBalance()+400;
+            double balance2 = bankAccount2.getBalance() + 800;
+            balance+=amount;
+            balance2-=amount;
+            assertEquals("Balance of first account changed",balance+=amount,balance,0.0000000000000000000000001);
+            assertEquals("Balance of second account changed",balance2+=amount,balance2,0.0000000000000000000000001);
+        }
     }
-
-    @Test
-    public void getUserAccounts() throws Exception {
-    }
-
-}

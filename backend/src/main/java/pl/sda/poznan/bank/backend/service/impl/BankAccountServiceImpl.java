@@ -29,6 +29,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     private BankUserDetailsService bankUserDetailsService;
 
+    public BankAccountServiceImpl() {
+    }
+
     @Autowired
     public BankAccountServiceImpl(HistoryRepository historyRepository,
                                   BankAccountRepository bankAccountRepository,
